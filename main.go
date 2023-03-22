@@ -102,7 +102,7 @@ func main() {
 			panic(err)
 		}
 
-		size += r.Size
+		size += len(r.Value)
 		if size > (10 << 20) {
 			totalSize += size
 			if (totalSize/1024/1024/1024)%10 == 0 { // 10GiBs
