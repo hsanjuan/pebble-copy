@@ -82,6 +82,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer b.Commit(ctx)
 
 	results, err := peb1.Query(ctx, query.Query{})
 	if err != nil {
@@ -112,15 +113,7 @@ func main() {
 			if err != nil {
 				panic(err)
 			}
-			b, err = batchingDs.Batch(ctx)
-			if err != nil {
-				panic(err)
-			}
 		}
-	}
-	err = b.Commit(ctx)
-	if err != nil {
-		panic(err)
 	}
 	fmt.Println("finished")
 }
