@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	logging.SetLogLevel("*", "DEBUG")
+	logging.SetLogLevel("pebble", "DEBUG")
 
 	cfg1 := &pebble.Config{}
 	cfgMgr1 := config.NewManager()
