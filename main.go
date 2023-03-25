@@ -64,11 +64,16 @@ func main() {
 		panic(err)
 	}
 
+	cfg1.PebbleOptions.DisableAutomaticCompactions = true
 	peb1, err := pebble.New(cfg1)
 	if err != nil {
 		panic(err)
 	}
 	defer peb1.Close()
+	cfg2.PebbleOptions.Experimental.MaxWriterConcurrency = 512
+	cfg2.PebbleOptions.MaxConcurrentCompactions = func() int {
+		return 20
+	}
 	peb2, err := pebble.New(cfg2)
 	if err != nil {
 		panic(err)
